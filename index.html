@@ -1,143 +1,109 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD?xhtml111.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD?xhtml111.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-gb">
   <head>
-    <title>Welcome to TinuxZoo</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="description" content="Your own bookable and free Linux machine. Learn system administration in a safe environment using interactive tutorials." />
-    <style type="text/css">
-      @import url("/css/page.css");
+   <title> Welcome to linuxzoo </title>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+   <meta name="description" content="Your own bookable and free linux machine. Learn system administration in a safe environment using interactive tutorials."/>
+ 
+   <style type="text/css">
+     @import url("/css/page.css");
+   </style>
+   <script type="text/javascript" src="/mc/mc.js"> </script>
+   
+  <!-- Cookie Consent -->
+  <script type="text/javascript">
+    window.cookieconsent_options = {"message":"We use cookies to manage user identity and site personalization. We also use them to personalize content and ads, to provide social media features and to analyse our traffic. We also share information about your use of our site with our social media, advertising and analytics partners.","dismiss":"Got it!","learnMore":"More info","link":"http://linuxzoo.net/page/cookies.html","theme":"light-floating"};
+  </script>
 
-      /* Additional CSS styles */
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #f2f2f2;
-        margin: 0;
-        padding: 0;
-      }
+  <script type="text/javascript" src="/jslib/cookieconsent/cookieconsent.latest.min.js"></script>
+<!-- End Cookie Consent plugin -->
 
-      #vmboxwrap {
-        float: right;
-        margin-top: 20px; /* Adjust as needed */
-      }
+ </head>
+ <body >
 
-      #jtest {
-        padding-top: 0;
-        width: 360px;
-        height: 420px;
-      }
+  <div id="vmboxwrap" style="float:right">
+   <div id="jtest" style="padding-top:0; width:360px; height:420px;">
+     <p>If you can see this check that</p>
+     <ul><li>Javascript is enabled</li></ul>
+   </div>
+  </div>
 
-      /* Add more custom styles here */
-    </style>
-    <script type="text/javascript" src="/mc/mc.js"></script>
-    <!-- Cookie Consent -->
-    <script type="text/javascript">
-      window.cookieconsent_options = {
-        "message": "We use cookies to manage user identity and site personalization. We also use them to personalize content and ads, to provide social media features and to analyse our traffic. We also share information about your use of our site with our social media, advertising and analytics partners.",
-        "dismiss": "Got it!",
-        "learnMore": "More info",
-        "link": "http://linuxzoo.net/page/cookies.html",
-        "theme": "light-floating"
-      };
-    </script>
-    <script type="text/javascript" src="/jslib/cookieconsent/cookieconsent.latest.min.js"></script>
-    <!-- End Cookie Consent plugin -->
-  </head>
-  <body>
-    <div id="vmboxwrap" style="float:right">
-      <div id="jtest" style="padding-top:0; width:360px; height:420px;">
-        <p>If you can see this check that</p>
-        <ul>
-          <li>Javascript is enabled</li>
-        </ul>
-      </div>
-    </div>
-    <script type="text/javascript">
-      <!--
-      var rtick;
+<script type="text/javascript">
+<!--
+var rtick;
+function firstBeat() {
+  rtick=10;
+  var myiframe = document.createElement("iframe");
+  myiframe.setAttribute("id","vmbox");
+  myiframe.setAttribute("width","360");
+  myiframe.setAttribute("scrolling","no");
+  myiframe.setAttribute("height","420");
+  myiframe.setAttribute("frameBorder","0");
+  myiframe.setAttribute("src","https://linuxzoo.net/vm/myvm.cgi");
+  myiframe.style.verticalalign="top";
+  var idp = document.getElementById("vmboxwrap");
+  var id = document.getElementById("jtest");
+  if ((id != null)&&(idp != null)) {
+    idp.replaceChild(myiframe,id);
+  }
+  setInterval("hbeat()",1000);
+}
+var whatstate="max";
 
-      function firstBeat() {
-        rtick = 10;
-        var myiframe = document.createElement("iframe");
-        myiframe.setAttribute("id", "vmbox");
-        myiframe.setAttribute("width", "360");
-        myiframe.setAttribute("scrolling", "no");
-        myiframe.setAttribute("height", "420");
-        myiframe.setAttribute("frameBorder", "0");
-        myiframe.setAttribute("src", "https://linuxzoo.net/vm/myvm.cgi");
-        myiframe.style.verticalalign = "top";
-        var idp = document.getElementById("vmboxwrap");
-        var id = document.getElementById("jtest");
-        if ((id != null) && (idp != null)) {
-          idp.replaceChild(myiframe, id);
-        }
-        setInterval("hbeat()", 1000);
-      }
-      var whatstate = "max";
+function isMinMax() {
+  return whatstate;
+}
 
-      function isMinMax() {
-        return whatstate;
-      }
+function minframe() {
+  var id = document.getElementById("vmbox");
+  if (id != null) {
+    id.setAttribute("height","100");
+    whatstate="min";
+  }
+}
+function maxframe() {
+  var id = document.getElementById("vmbox");
+  if (id != null) {
+    id.setAttribute("height","420");
+    whatstate="max";
+  }
+}
 
-      function minframe() {
-        var id = document.getElementById("vmbox");
-        if (id != null) {
-          id.setAttribute("height", "100");
-          whatstate = "min";
-        }
-      }
-
-      function maxframe() {
-        var id = document.getElementById("vmbox");
-        if (id != null) {
-          id.setAttribute("height", "420");
-          whatstate = "max";
-        }
-      }
-
-      function hbeat() {
-        if (rtick == 0) {
-          rtick = 10;
-          fupdate("https://linuxzoo.net/vm/myvm.cgi", "vmbox");
-        } else if (rtick > 0) {
-          rtick = rtick - 1;
-        }
-      }
-
-      function frameLoaded(ntick) {
-        rtick = ntick;
-      }
-
-      function fupdate(dest, oid) {
-        var id = document.getElementById(oid);
-        if ((document.frames) && (document.frames[oid] != null)) {
-          id = document.frames[oid];
-        }
-        if (id == null) {
-          return;
-        }
-        var link;
-        if (id.contentDocument) {
-          link = id.contentDocument;
-        } else if (id.contentWindow) {
-          link = id.contentWindow.document;
-        } else if (id.document) {
-          link = id.document;
-        }
-        if (link != null) {
-          //alert(link.location);
-          //alert(link.location.replace);
-          link.location.replace(dest);
-        }
-      }
-      firstBeat();
-      //
-      -->
-    </script>
-    <div style="border:0; padding:0; float:left">
-      <img src="https://linuxzoo.net/gifs/icon.gif" style="padding: 10px" alt="Linuxzoo Penguin Icon" />
-      
-      <H2>LinuxZoo But Copied</H2>
-    </div>
-  </body>
-  </html>
-  
+function hbeat() {
+  if (rtick == 0) {
+    rtick = 10;
+    fupdate("https://linuxzoo.net/vm/myvm.cgi","vmbox");
+  } else if (rtick > 0) {
+    rtick = rtick - 1;
+  }
+}
+function frameLoaded(ntick) {
+  rtick=ntick;
+}
+function fupdate(dest,oid) {
+  var id = document.getElementById(oid);
+  if ((document.frames)&&(document.frames[oid] != null)) {
+    id = document.frames[oid];
+  }
+  if (id == null) {return;}
+  var link;
+  if (id.contentDocument) {
+    link = id.contentDocument;
+  } else if (id.contentWindow) {
+    link = id.contentWindow.document;
+  } else if (id.document) {
+    link = id.document;
+  }
+  if (link != null) {
+    //alert(link.location);
+    //alert(link.location.replace);
+    link.location.replace(dest);
+  }
+}
+firstBeat();
+//-->
+</script>
+<div style="border:0; padding:0; float:left">
+<img src="/gifs/icon.gif" style="padding: 10px" alt="Linuxzoo Penguin Icon"/>
